@@ -1,0 +1,28 @@
+pip install visualkeras
+pip install ann_visualizer
+pip install graphviz #установка библиотек для визуализации
+
+# Import necessary libraries
+import pandas as pd
+import numpy as np                               # Import numpy
+from skimage import data, io   # Import skimage library (data - Test images and example data.
+#                          io - Reading, saving, and displaying images.)
+from skimage.color import rgb2gray
+import matplotlib.pyplot as plt                  # Import matplotlib.pyplot (Plotting framework in Python.)
+%matplotlib inline
+import os                                        # This module provides a portable way of using operating system dependent functionality.
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+import warnings
+# Suppress warnings
+warnings.filterwarnings('ignore')
+from IPython.display import display
+import cv2 as cv
+from sklearn.metrics import confusion_matrix
+from sklearn.model_selection import train_test_split
+from tensorflow.keras import utils
+from tensorflow.keras.models import Sequential,load_model
+from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPool2D, BatchNormalization
+from tensorflow.keras.optimizers import Adam
+import tensorflow as tf
+import seaborn as sns
+
