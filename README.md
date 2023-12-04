@@ -25,7 +25,7 @@ An outline of a program for displaying the topology of an artificial neural netw
 Мы создали определяемые пользователем функции для построения трех разных моделей по 
 отдельности с разным количеством слоев CNN, максимальным пулом и плотными слоями.
 
-#Ссылки на источники:
+# Ссылки на источники:
 Гавриков, П. (2022, 13 апреля). visualkeras для Keras/TensorFlow. Гитхаб. https://github.com/paulgavrikov/visualkeras
 Георгиу, Т. (2022, 21 октября). Визуализатор ANN. Гитхаб. https://github.com/RedaOps/ann-visualizer
 Шах, А. (2018, 28 апреля). Визуализация искусственных нейронных сетей (ИНС) всего одной строкой кода. Середина. https://towardsdatascience.com/visualizing-artificial-neural-networks-anns-with-just-one-line-of-code-b4233607209e
