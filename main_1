@@ -115,4 +115,10 @@ from tensorflow import keras
 logdir="logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
 
+model.fit(
+X2_train, Y2_train,
+batch_size=64,
+epochs=5,
+callbacks=[tensorboard_callback])
+
 
