@@ -26,3 +26,83 @@ from tensorflow.keras.optimizers import Adam
 import tensorflow as tf
 import seaborn as sns
 
+def construct_model():
+  model = Sequential()
+  model.add(Conv2D(filters=64, kernel_size=(3, 3), input_shape=(128, 128, 1), activation=’relu’))
+  model.add(Conv2D(filters=64, kernel_size=(3, 3), activation=’relu’))
+  model.add(MaxPool2D((2, 2)))
+  model.add(Flatten())
+  model.add(Dense(256, activation=’relu’))
+  model.add(Dense(12, activation=’softmax’))
+  model.compile(loss=’categorical_crossentropy’, optimizer=’adam’, metrics=[‘accuracy’])
+  return model
+
+
+def sconstruct_model():
+  smodel = Sequential()
+  smodel.add(Conv2D(filters=64, kernel_size=(3, 3), input_shape=(128, 128, 3), activation=’relu’))
+  smodel.add(Conv2D(filters=64, kernel_size=(3, 3), activation=’relu’))
+  smodel.add(MaxPool2D((2, 2)))
+  smodel.add(Conv2D(filters=128, kernel_size=(3, 3), activation=’relu’))
+  smodel.add(Conv2D(filters=128, kernel_size=(3, 3), activation=’relu’))
+  smodel.add(MaxPool2D((2, 2)))
+  smodel.add(Conv2D(filters=128, kernel_size=(3, 3), activation=’relu’))
+  smodel.add(Conv2D(filters=128, kernel_size=(3, 3), activation=’relu’))
+  smodel.add(MaxPool2D((2, 2)))
+  smodel.add(Flatten())
+  smodel.add(Dense(256, activation=’relu’))
+  smodel.add(Dense(12, activation=’softmax’))
+  #optimizer = Adam(lr=0.001)
+  smodel.compile(loss=’categorical_crossentropy’, optimizer=’adam’, metrics=[‘accuracy’])
+  #model.summary()
+  return smodel
+
+
+def cconstruct_model(learningRate):
+  smodel = Sequential()
+  smodel.add(Conv2D(filters=32, kernel_size=(3, 3), input_shape=(128, 128, 1), activation=’relu’))
+  smodel.add(Conv2D(filters=32, kernel_size=(3, 3), activation=’relu’))
+  smodel.add(MaxPool2D((2, 2)))
+  smodel.add(Conv2D(filters=64, kernel_size=(3, 3), activation=’relu’))
+  smodel.add(Conv2D(filters=64, kernel_size=(3, 3), activation=’relu’))
+  smodel.add(MaxPool2D((2, 2)))
+  smodel.add(Conv2D(filters=128, kernel_size=(3, 3), activation=’relu’))
+  smodel.add(Conv2D(filters=128, kernel_size=(3, 3), activation=’relu’))
+  smodel.add(MaxPool2D((2, 2)))
+  smodel.add(Flatten())
+  smodel.add(Dense(256, activation=’relu’))
+  smodel.add(Dense(256, activation=’relu’))
+  smodel.add(Dense(12, activation=’softmax’))
+  optimizer = Adam(lr=learningRate)
+  smodel.compile(loss=’categorical_crossentropy’, optimizer=optimizer, metrics=[‘accuracy’])
+  smodel.summary()
+  return smodel
+  model=cconstruct_model(0.001)
+
+model=construct_model()
+
+from ann_visualizer.visualize import ann_viz
+ann_viz(model, view=True, filename=”cconstruct_model”, title=”CNN — Model 1 — Simple Architecture”) #
+
+model1=construct_model()
+model2=sconstruct_model()
+model3=cconstruct_model(0.009)
+import visualkeras
+from PIL import ImageFont
+visualkeras.layered_view(model1, legend=True)
+visualkeras.layered_view(model2, legend=True)
+visualkeras.layered_view(model3, legend=True)
+
+tf.keras.utils.plot_model(
+model1,
+to_file="model.png",
+show_shapes=True,
+show_dtype=False,
+show_layer_names=True,
+rankdir="TB",
+expand_nested=True,
+dpi=96,
+layer_range=None,
+show_layer_activations=True,
+)
+
